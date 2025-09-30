@@ -65,7 +65,7 @@ print(move_flower_to_the_end(['rose', 'lily', 'peony'],'daisy'))                
 '''
 Find Position
 
-Goal: GIven the number of occurance to look for, a list and an item, find the index of that item.
+Goal: Given the number of occurance to look for, a list and an item, find the index of that item.
 
 Task: Return the index of the x-th occurrence of a specific course in a list of courses. If it doesn't occur x times, return -1.
 
@@ -126,7 +126,6 @@ Hint: Use list methods.
 '''
 def add_to_list(nums_list, num):
     # write your code here
-
     return -1
 
 '''Solution'''
@@ -136,7 +135,7 @@ def add_to_list(nums_list, num):
     if num < 0: 
         nums_list.insert(0, num)
     if num == 0:
-        middle = int(len(nums_list)/2)
+        middle = int(len(nums_list)//2)
         nums_list.insert(middle, num)
     return nums_list
 
@@ -232,3 +231,146 @@ def dotProduct(a,b):
 print(dotProduct([2,0,1], [6,3,4])) # 16.0
 print(dotProduct([6,3,4], [2,0,1])) # 16.0
 print(dotProduct([1,2,3], [4,5,6])) # 32.0
+
+'''
+Remove Duplicates
+
+Description
+Given an integer list nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+
+Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:
+
+Change the list nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
+
+Return k.
+
+Examples
+remove_duplicates([1,1,2]) → 2, nums = [1,2,_]
+
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+remove_duplicates([0,0,1,1,1,2,2,3,3,4]) → 5, nums = [0,1,2,3,4,_,_,_,_,_]
+
+Constraints
+1 <= nums.length <= 3 * 104
+
+-100 <= nums[i] <= 100
+
+nums is sorted in non-decreasing order.
+
+Source
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/ 
+'''
+def remove_duplicates(nums):
+    # Write your code here
+    return -1
+
+'''Solution'''
+def remove_duplicates(nums):
+    i = 0
+    for j in range(1, len(nums)):
+        if nums[i] != nums[j]:
+            i += 1
+            nums[i] = nums[j]
+    return i+1
+
+'''Tests'''
+print(remove_duplicates([1,1,2]))               # 2
+print(remove_duplicates([0,0,1,1,1,2,2,3,3,4])) # 5 
+print(remove_duplicates([3,3,4,4,5,6,7,8]))     # 6
+
+'''
+Maximum Difference
+
+Description
+Given a list of numbers, find the difference between the largest and the smallest (the maximum difference).
+
+Examples
+max_diff([7, 1, 8, 8, 9]) → 8
+
+max_diff([1, 1, 1]) → 0
+
+Source
+Googler: Donnell Debnam Jr., ddebnam@google.com
+'''
+def max_diff(nums):
+    # Write your code here 
+    return -1
+
+'''Solution'''
+def max_diff(nums):
+    smallest = nums[0]
+    biggest = nums[0]
+    for item in nums:
+        smallest = min(smallest, item)
+        biggest = max(biggest, item)
+    return biggest - smallest
+
+'''Tests'''
+print(max_diff([7, 1, 8, 8, 9]))          # 8
+print(max_diff([14, 90, 14, 3, 3, 7, 9])) # 87
+print(max_diff([1, 1, 1]))                # 0
+
+'''
+Sum First Col
+
+Write a function named sum_first_col that takes a 2D list of numbers as an argument, and returns the sum of all the elements in the first column.
+
+Examples:
+
+sum_first_col([[1, 2, 3], [4, 5, 6]]) returns 5
+
+sum_first_col([[10], [20], [30]]) returns 60
+
+sum_first_col([[], [], []]) returns 0
+
+Hint: Create a variable (e.g. total) to keep track of the sum of each element.
+      Remember to update total by adding the first item of each row.
+'''
+def sum_first_col(grid):
+  # write your code here
+  return -1
+'''Solution'''
+def sum_first_col(grid):
+  total = 0
+  for row in grid:
+    if len(row) > 0:
+      total = total + row[0]
+  return total
+
+'''Tests'''
+print(sum_first_col([[1, 2, 3], [4, 5, 6]])) # 5
+print(sum_first_col([[10], [20], [30]]))     # 60
+print(sum_first_col([[], [], []]))           # 0
+
+'''
+
+
+Write a function named duck_duck_goose that takes a 2D list of strings as an argument.
+
+This 2D list will contain lists of strings that represent many different kinds of animals, but you only care about 'duck' and 'goose'. Count the number of times the string 'duck' or 'goose' appears.
+
+Examples:
+
+duck_duck_goose([['dog', 'mouse', 'cDuck Duck Gooseat'], ['eel', 'fish', 'mongoose']]) returns 0
+
+duck_duck_goose([['duck', 'cat', 'duck'], ['duck', 'goose', 'sheep']]) returns 4
+
+duck_duck_goose([['duck', 'duck', 'duck'], ['duck', 'goose', 'goose']]) returns 6
+'''
+def duck_duck_goose(grid):
+    # write your code here
+    return -1
+'''Solution'''
+def duck_duck_goose(grid):
+    total = 0
+    for row in grid:
+        for val in row:
+            if val == 'duck' or val == 'goose':
+                total += 1
+    return total
+
+'''Tests'''
+print(duck_duck_goose([['dog', 'mouse', 'cat'], ['eel', 'fish', 'mongoose']]))  # 0
+print(duck_duck_goose([['duck', 'cat', 'duck'], ['duck', 'goose', 'sheep']]))   # 4
+print(duck_duck_goose([['duck', 'duck', 'duck'], ['duck', 'goose', 'goose']]))  # 6
