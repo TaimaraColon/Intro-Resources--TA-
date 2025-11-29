@@ -355,18 +355,194 @@ print(change_x_y("code"))       # Output: code
 print(change_x_y(""))           # Output: 
 
 '''EXERCISE - SUM DIGITS'''
+'''
+Given a non-negative int n, return the sum of its digits recursively (no loops). Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while divide (/) by 10 removes the rightmost digit (126 / 10 is 12).
+
+Do noy turn the number into a string, use % and / (or //) operators
+
+sum_digits(126) → 9
+sum_digits(49) → 13
+sum_digits(12) → 3
+'''
+def sum_digits(number):
+    # YOUR CODE HERE
+    return -1
+
+'''SOLUTION'''
+def sum_digits(number):
+    if number == 0:
+        return 0
+    return number % 10 + sum_digits(number // 10)
+
+'''TESTS'''
+print("----- TESTS: SUM DIGITS -----")
+print(sum_digits(126))      # Output: 9
+print(sum_digits(49))       # Output: 13
+print(sum_digits(12))       # Output: 3
+print(sum_digits(0))        # Output: 0
 
 '''EXERCISE - STRING COUNT'''
+'''
+Given a string and a non-empty substring sub, compute recursively the number of times that sub appears in the string, without the sub strings overlapping.
+
+string_count("catcowcat", "cat") → 2
+string_count("catcowcat", "cow") → 1
+string_count("catcowcat", "dog") → 0
+'''
+def string_count(word, string_to_search):
+    # YOUR CODE HERE
+    return -1
+
+'''SOLUTION'''
+def string_count(word, string_to_search):
+    to_search_len = len(string_to_search)
+    if not word or len(word) < to_search_len:
+        return 0
+    if word[:to_search_len] == string_to_search:
+        return 1 + string_count(word[to_search_len:], string_to_search)
+    return string_count(word[1:], string_to_search)
+
+'''TESTS'''
+print("----- TESTS: STRING COUNT -----")
+print(string_count("catcowcat", "cat"))   # Output: 2
+print(string_count("catcowcat", "cow"))   # Output: 1
+print(string_count("catcowcat", "dog"))   # Output: 0
 
 '''EXERCISE - PAIR STAR'''
+'''
+Given a string, compute recursively a new string where identical chars that are adjacent in the original string are separated from each other by a "*".
+
+pair_star("hello") → "hel*lo"
+pair_star("xxyy") → "x*xy*y"
+pair_star("aaaa") → "a*a*a*a"
+'''
+def pair_star(word):
+    # YOUR CODE HERE
+    return ''
+
+'''SOLUTION'''
+def pair_star(word):
+    if len(word) <= 1:
+        return word
+    if word[0] == word[1]:
+        return word[0] + '*' + pair_star(word[1:])
+    return word[0] + pair_star(word[1:])
+
+'''TESTS'''
+print("----- TESTS: PAIR STAR -----")
+print(pair_star("hello"))    # Output: hel*lo
+print(pair_star("xxyy"))     # Output: x*xy*y
+print(pair_star("aaaa"))     # Output: a*a*a*a
 
 '''EXERCISE - COUNT 7'''
+'''
+Given a non-negative int n, return the count of the occurrences of 7 as a digit, so for example 717 yields 2. (no loops). Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while divide (/) by 10 removes the rightmost digit (126 / 10 is 12).
+
+DO NOT TURN THE NUMBER INTO A STRING, USE % AND / (or //) OPERATORS
+
+count_7(717) → 2
+count_7(7) → 1
+count_7(123) → 0
+'''
+def count_7(n):
+    # YOUR CODE HERE
+    return -1
+
+'''SOLUTION'''
+def count_7(number):
+    if number == 0:
+        return 0
+    last_digit = number % 10
+    number //= 10
+    if last_digit == 7:
+        return 1 + count_7(number)
+    return count_7(number)
+
+'''TESTS'''
+print("----- TESTS: COUNT 7 -----")
+print(count_7(717))    # Output: 2
+print(count_7(7))      # Output: 1
+print(count_7(123))    # Output: 0
 
 '''EXERCISE - LIST 220'''
+'''
+Given a list of ints, compute recursively if the list contains somewhere a value followed in the list by that value times 10. We'll use the convention of considering only the part of the list that begins at the given index. In this way, a recursive call can pass index+1 to move down the list. The initial call will pass in index as 0.
+
+list_220([1, 2, 20], 0) → true
+list_220([3, 30], 0) → true
+list_220([3], 0) → false
+'''
+def list_220(nums, i):
+    # YOUR CODE HERE
+    return False
+
+''''SOLUTION'''
+def list_220(nums, i):
+    if i == len(nums)-1:
+        return False
+    if nums[i] * 10 == nums[i+1]:
+        return True
+    return list_220(nums, i+1)
+
+'''TESTS'''
+print("----- TESTS: LIST 220 -----")
+print(list_220([1, 2, 20], 0))   # Output: True
+print(list_220([3, 30], 0))      # Output: True
+print(list_220([3], 0))          # Output: False
 
 '''EXERCISE - COUNT "ABC" AND "ABA"'''
+'''
+Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
+
+count_abc("abc") → 1
+count_abc("abcxxabc") → 2
+count_abc("abaxxaba") → 2
+'''
+def count_abc(word):
+    # YOUR COE HERE
+    return ''
+
+'''SOLUTION'''
+def count_abc(word):
+    if len(word) < 3:
+        return 0
+    if word[:3] in ('abc', 'aba'):
+        return 1 + count_abc(word[3:])
+    return count_abc(word[1:])
+
+'''TESTS'''
+print("----- TESTS: COUNT 'ABC' AND 'ABA' -----")
+print(count_abc("abc"))          # Output: 1
+print(count_abc("abcxxabc"))     # Output: 2
+print(count_abc("abaxxaba"))     # Output: 2
 
 '''EXERCISE - CHANGE PI'''
+'''
+Given a string, compute recursively (no loops) a new string where all appearances of "pi" have been replaced by "3.14".
+
+change_pi("xpix") → "x3.14x"
+change_pi("pipi") → "3.143.14"
+change_pi("pip") → "3.14p"
+'''
+def change_pi(word):
+    # YOUR CODE HERE
+    return ''
+
+'''SOLUTION'''
+def change_pi(word):
+    if len(word) < 2:
+        return word
+    next_two_characters = word[:2]
+    if next_two_characters == 'pi':
+        return '3.14' + change_pi(word[2:])
+    else:
+        return word[0] + change_pi(word[1:])
+    
+'''TESTS'''
+print("----- TESTS: CHANGE PI -----")
+print(change_pi("xpix"))     # Output: x3.14x
+print(change_pi("pipipi"))     # Output: 3.143.143.14
+print(change_pi("pip"))      # Output: 3.14p
 
 '''EXERCISE - '''
 
