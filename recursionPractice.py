@@ -540,10 +540,84 @@ def change_pi(word):
     
 '''TESTS'''
 print("----- TESTS: CHANGE PI -----")
-print(change_pi("xpix"))     # Output: x3.14x
-print(change_pi("pipipi"))     # Output: 3.143.143.14
-print(change_pi("pip"))      # Output: 3.14p
+print(change_pi("xpix"))        # Output: x3.14x
+print(change_pi("pipipi"))      # Output: 3.143.143.14
+print(change_pi("pip"))         # Output: 3.14p
 
-'''EXERCISE - '''
+'''EXERCISE - GET MINIMUM VALUE'''
+'''
+Write a function called get_minimum_value_recursive that finds the smallest number in a given list of numbers, 
+utilizing recursion. It accepts a single parameter, nums, which is expected to be a list of integers 
+or floating-point numbers.
+'''
+def get_minimum_value_recursive(nums):
+    # YOUR CODE HERE
+    return -1   
 
-'''EXERCISE - '''
+'''SOLUTION'''
+def get_minimum_value_recursive(nums):
+    if len(nums) == 1:
+        return nums[0]
+    get_minimum_value_recursive_rest = get_minimum_value_recursive(nums[1:])
+    if nums[0] < get_minimum_value_recursive_rest:
+        return nums[0]
+    return get_minimum_value_recursive_rest
+    
+'''TESTS'''
+print('----- TESTS: GET MINIMUM VALUE -----')
+print(get_minimum_value_recursive([3,1,4,1,5,9,2,6,5]))        # Output: 1
+print(get_minimum_value_recursive([10,20,5,40,15]))            # Output: 5
+print(get_minimum_value_recursive([5]))                        # Output: 5
+
+'''EXERCISE - DECIMAL TO BINARY'''
+'''
+Write a function dec_to_bin(d) that converts a decimal (base 10) integer d to its binary (base 2) representation using recursion. 
+The function should return the binary representation as an integer.
+The most common and straightforward method for converting a non-negative decimal integer to binary is the repeated division by 2 method.
+The key principle is that any decimal number d can be uniquely expressed as a sum of powers of two. The coefficients (the 1's and 0's) of those powers form the binary number.
+
+1. The Process
+The process involves two simple, repetitive steps:
+
+Step	Action	Resulting Binary Digit
+Divide	Divide the current decimal number by 2.	
+Record	Record the remainder (either 0 or 1). This is the next binary digit.
+Update	The quotient becomes the new number for the next division.	
+
+
+2. Example: Convert 13 to Binary
+Let's convert the decimal number 13 to binary:
+
+Division	Decimal Number / 2	Quotient	Remainder (Binary Digit)
+1	            13÷2	            6	        1
+2	            6÷2	                3	        0
+3	            3÷2	                1	        1
+4	            1÷2	                0	        1
+
+3. Final Result
+The binary number is formed by reading the remainders from bottom to top (from the last remainder to the first).
+
+In the example above, the remainders are 1, 0, 1, 1.
+
+Decimal 13 = Binary 1101
+'''
+def dec_to_bin(d):
+    # YOUR CODE HERE
+    return -1
+    
+'''SOLUTION'''
+def dec_to_bin(d):
+    if d == 0:
+        return 0
+    else:
+        return (d % 2 + 10 * dec_to_bin(d // 2))
+    
+'''TESTS'''
+print('----- TESTS: DECIMAL TO BINARY -----')
+print(dec_to_bin(0))      # Output: 0
+print(dec_to_bin(1))      # Output: 1
+print(dec_to_bin(2))      # Output: 10
+print(dec_to_bin(5))      # Output: 101
+print(dec_to_bin(10))     # Output: 1010
+print(dec_to_bin(18))     # Output: 10010
+print(dec_to_bin(255))    # Output: 11111111
